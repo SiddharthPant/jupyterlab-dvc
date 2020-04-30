@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+
+  jupyter:
+    build:
+        context: .
+        args:
+            - SERVER_PASSWORD=${SERVER_PASSWORD}
+            - LOGIN_TOKEN=${LOGIN_TOKEN}
+    ports:
+      - "8888:8888"
+    env_file:
+        - ./.env
