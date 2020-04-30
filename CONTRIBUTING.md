@@ -2,7 +2,7 @@
 
 You can contribute in many ways to move this project forwrad.
 
-While anyone can contribute, only [Team Members](https://github.com/jupyterlab/jupyterlab-git#team) can merge in pull requests
+While anyone can contribute, only [Team Members](https://github.com/SiddharthPant/jupyterlab-dvc#team) can merge in pull requests
 or add labels to issues.
 
 Here we outline how the different contribution processes play out in practice for this project.

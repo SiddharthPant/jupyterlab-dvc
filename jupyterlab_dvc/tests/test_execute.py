@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch
 
-from jupyterlab_git.git import execute, execution_lock
+from jupyterlab_dvc.git import execute, execution_lock
 
 
 @pytest.mark.asyncio

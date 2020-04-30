@@ -1,7 +1,7 @@
 import subprocess
 from unittest.mock import Mock, patch
 
-from jupyterlab_git.handlers import GitRemoteAddHandler
+from jupyterlab_dvc.handlers import GitRemoteAddHandler
 
 from .testutils import assert_http_error, ServerTest
 

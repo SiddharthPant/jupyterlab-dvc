@@ -5,7 +5,7 @@ from unittest.mock import Mock, call, patch
 import pytest
 import tornado
 
-from jupyterlab_git.git import Git
+from jupyterlab_dvc.git import Git
 
 from .testutils import FakeContentManager
 
@@ -21,7 +21,7 @@ async def test_changed_files_invalid_input():
 @pytest.mark.asyncio
 async def test_changed_files_single_commit():
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (0, "file1.ipynb\x00file2.py\x00", "")
@@ -48,7 +48,7 @@ async def test_changed_files_single_commit():
 
 @pytest.mark.asyncio
 async def test_changed_files_working_tree():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (0, "file1.ipynb\x00file2.py", "")
@@ -68,7 +68,7 @@ async def test_changed_files_working_tree():
 
 @pytest.mark.asyncio
 async def test_changed_files_index():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (0, "file1.ipynb\x00file2.py", "")
@@ -88,7 +88,7 @@ async def test_changed_files_index():
 
 @pytest.mark.asyncio
 async def test_changed_files_two_commits():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (0, "file1.ipynb\x00file2.py", "")
@@ -108,7 +108,7 @@ async def test_changed_files_two_commits():
 
 @pytest.mark.asyncio
 async def test_changed_files_git_diff_error():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.side_effect = CalledProcessError(128, b"cmd", b"error message")
 

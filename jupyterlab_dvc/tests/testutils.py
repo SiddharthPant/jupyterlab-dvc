@@ -69,7 +69,7 @@ class APITester(object):
 class ServerTest(ServerTestBase):
 
     # Force extension enabling - Disabled by parent class otherwise
-    config = Config({"NotebookApp": {"nbserver_extensions": {"jupyterlab_git": True}}})
+    config = Config({"NotebookApp": {"nbserver_extensions": {"jupyterlab_dvc": True}}})
 
     def setUp(self):
         super(ServerTest, self).setUp()

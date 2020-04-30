@@ -1,6 +1,6 @@
-# Specification of jupyterlab-git REST API
+# Specification of jupyterlab-dvc REST API
 
-A description of all jupyterlab-git REST API endpoints
+A description of all jupyterlab-dvc REST API endpoints
 Contents for each call include:
 
 1. URLS

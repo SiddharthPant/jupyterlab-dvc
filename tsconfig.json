@@ -17,7 +17,7 @@
     "resolveJsonModule": true,
     "rootDir": "src",
     "sourceMap": true,
-    "sourceRoot": "./@jupyterlab/git/src",
+    "sourceRoot": "./@jupyterlab/dvc/src",
     "strict": true,
     "strictNullChecks": false,
     "target": "es2017",

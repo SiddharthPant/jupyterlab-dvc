@@ -14,7 +14,7 @@ from setupbase import (
 import setuptools
 
 # The name of the project
-name='jupyterlab_git'
+name='jupyterlab_dvc'
 
 # Ensure a valid python version
 ensure_python('>=3.5')
@@ -27,7 +27,7 @@ lab_path = Path(HERE) / name / 'labextension'
 data_files_spec = [
     ('share/jupyter/lab/extensions', str(lab_path), '*.tgz'),
     ('etc/jupyter/jupyter_notebook_config.d',
-     'jupyter-config/jupyter_notebook_config.d', 'jupyterlab_git.json'),
+     'jupyter-config/jupyter_notebook_config.d', 'jupyterlab_dvc.json'),
 ]
 
 def runPackLabextension():
@@ -47,14 +47,14 @@ with open("README.md", "r") as fh:
 
 setup_args = dict(
     name            = name,
-    description     = "A server extension for JupyterLab's git extension",
+    description     = "A server extension for DVC",
     long_description= long_description,
     long_description_content_type="text/markdown",
     version         = version,
     cmdclass        = cmdclass,
     packages        = setuptools.find_packages(),
-    author          = 'Jupyter Development Team',
-    url             = 'https://github.com/jupyterlab/jupyterlab-git',
+    author          = 'Siddharth Pant',
+    url             = 'https://github.com/SiddharthPant/jupyterlab-dvc',
     license         = 'BSD',
     platforms       = "Linux, Mac OS X, Windows",
     keywords        = ['Jupyter', 'JupyterLab', 'Git'],

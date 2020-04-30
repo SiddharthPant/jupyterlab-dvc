@@ -5,7 +5,7 @@ import subprocess
 
 from setupbase import get_version
 
-VERSION_PY = 'jupyterlab_git/_version.py'
+VERSION_PY = 'jupyterlab_dvc/_version.py'
 
 def prepLabextensionBundle():
     subprocess.run(['jlpm', 'clean:slate'])

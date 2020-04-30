@@ -4,7 +4,7 @@ from unittest.mock import ANY, Mock, call, patch
 
 import tornado
 
-from jupyterlab_git.handlers import (
+from jupyterlab_dvc.handlers import (
     GitAllHistoryHandler,
     GitBranchHandler,
     GitLogHandler,
@@ -25,7 +25,7 @@ def test_mapping_added():
 
 
 class TestAllHistory(ServerTest):
-    @patch("jupyterlab_git.handlers.GitAllHistoryHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitAllHistoryHandler.git")
     def test_all_history_handler_localbranch(self, mock_git):
         # Given
         show_top_level = {"code": 0, "foo": "top_level"}
@@ -62,7 +62,7 @@ class TestAllHistory(ServerTest):
 
 
 class TestBranch(ServerTest):
-    @patch("jupyterlab_git.handlers.GitBranchHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitBranchHandler.git")
     def test_branch_handler_localbranch(self, mock_git):
         # Given
         branch = {
@@ -126,7 +126,7 @@ class TestBranch(ServerTest):
 
 
 class TestLog(ServerTest):
-    @patch("jupyterlab_git.handlers.GitLogHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitLogHandler.git")
     def test_log_handler(self, mock_git):
         # Given
         log = {"code": 0, "commits": []}
@@ -143,7 +143,7 @@ class TestLog(ServerTest):
         payload = response.json()
         assert payload == log
 
-    @patch("jupyterlab_git.handlers.GitLogHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitLogHandler.git")
     def test_log_handler_no_history_count(self, mock_git):
         # Given
         log = {"code": 0, "commits": []}
@@ -162,7 +162,7 @@ class TestLog(ServerTest):
 
 
 class TestPush(ServerTest):
-    @patch("jupyterlab_git.handlers.GitPushHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitPushHandler.git")
     def test_push_handler_localbranch(self, mock_git):
         # Given
         mock_git.get_current_branch.return_value = tornado.gen.maybe_future("foo")
@@ -184,7 +184,7 @@ class TestPush(ServerTest):
         payload = response.json()
         assert payload == {"code": 0}
 
-    @patch("jupyterlab_git.handlers.GitPushHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitPushHandler.git")
     def test_push_handler_remotebranch(self, mock_git):
         # Given
         mock_git.get_current_branch.return_value = tornado.gen.maybe_future("foo")
@@ -208,7 +208,7 @@ class TestPush(ServerTest):
         payload = response.json()
         assert payload == {"code": 0}
 
-    @patch("jupyterlab_git.handlers.GitPushHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitPushHandler.git")
     def test_push_handler_noupstream(self, mock_git):
         # Given
         mock_git.get_current_branch.return_value = tornado.gen.maybe_future("foo")
@@ -233,7 +233,7 @@ class TestPush(ServerTest):
 
 
 class TestUpstream(ServerTest):
-    @patch("jupyterlab_git.handlers.GitUpstreamHandler.git")
+    @patch("jupyterlab_dvc.handlers.GitUpstreamHandler.git")
     def test_upstream_handler_localbranch(self, mock_git):
         # Given
         mock_git.get_current_branch.return_value = tornado.gen.maybe_future("foo")
@@ -253,7 +253,7 @@ class TestUpstream(ServerTest):
 
 
 class TestDiffContent(ServerTest):
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -295,7 +295,7 @@ class TestDiffContent(ServerTest):
             any_order=True
         )
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_working(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -336,7 +336,7 @@ class TestDiffContent(ServerTest):
             ]
         )
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_index(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -378,7 +378,7 @@ class TestDiffContent(ServerTest):
             any_order=True
         )
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_unknown_special(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -403,7 +403,7 @@ class TestDiffContent(ServerTest):
         with assert_http_error(500, msg="unknown special ref"):
             self.tester.post(["diffcontent"], body=body)
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_show_handled_error(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -434,7 +434,7 @@ class TestDiffContent(ServerTest):
         assert payload["prev_content"] == ""
         assert payload["curr_content"] == ""
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_binary(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -454,7 +454,7 @@ class TestDiffContent(ServerTest):
         with assert_http_error(500, msg="file is not UTF-8"):
             self.tester.post(["diffcontent"], body=body)
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_show_unhandled_error(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"
@@ -474,7 +474,7 @@ class TestDiffContent(ServerTest):
         with assert_http_error(500, msg="Dummy error"):
             self.tester.post(["diffcontent"], body=body)
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_diffcontent_getcontent_error(self, mock_execute):
         # Given
         top_repo_path = "path/to/repo"

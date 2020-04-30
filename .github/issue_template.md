@@ -32,7 +32,7 @@ Welcome! Before creating a new issue:
 <!--Complete the following for context, and add any other relevant context-->
 
 - Python package version:
-<!-- Results of `conda list jupyterlab-git` or `pip show jupyterlab-git` -->
+<!-- Results of `conda list jupyterlab-dvc` or `pip show jupyterlab-dvc` -->
 - Extension version:
 <!-- Results of `jupyter labextension list` -->
 

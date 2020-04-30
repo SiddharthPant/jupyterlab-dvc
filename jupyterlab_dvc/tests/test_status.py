@@ -6,7 +6,7 @@ import pytest
 import tornado
 
 # local lib
-from jupyterlab_git.git import Git
+from jupyterlab_dvc.git import Git
 
 from .testutils import FakeContentManager
 
@@ -54,7 +54,7 @@ from .testutils import FakeContentManager
     ],
 )
 async def test_status(output, expected):
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         root = "/bin"
         repository = "test_curr_path"

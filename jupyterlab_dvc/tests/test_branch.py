@@ -6,7 +6,7 @@ import pytest
 import tornado
 
 # local lib
-from jupyterlab_git.git import Git
+from jupyterlab_dvc.git import Git
 
 from .testutils import FakeContentManager
 
@@ -31,7 +31,7 @@ def test_is_remote_branch():
 @pytest.mark.asyncio
 async def test_get_current_branch_success():
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future((0, "feature-foo", ""))
 
@@ -57,7 +57,7 @@ async def test_checkout_branch_noref_success():
     stderr_message = ""
     rc = 0
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         with patch.object(
             Git, "_get_branch_reference", return_value=tornado.gen.maybe_future(None)
         ) as mock__get_branch_reference:
@@ -91,7 +91,7 @@ async def test_checkout_branch_noref_failure():
         branch
     )
     rc = 1
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         with patch.object(
             Git, "_get_branch_reference", return_value=tornado.gen.maybe_future(None)
         ) as mock__get_branch_reference:
@@ -128,7 +128,7 @@ async def test_checkout_branch_remoteref_success():
     stderr_message = ""
     rc = 0
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         with patch.object(
             Git,
             "_get_branch_reference",
@@ -165,7 +165,7 @@ async def test_checkout_branch_headsref_failure():
     )
     rc = 1
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         with patch.object(
             Git,
             "_get_branch_reference",
@@ -202,7 +202,7 @@ async def test_checkout_branch_headsref_success():
     stderr_message = ""
     rc = 0
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         with patch.object(
             Git,
             "_get_branch_reference",
@@ -235,7 +235,7 @@ async def test_checkout_branch_remoteref_failure():
     )
     rc = 1
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         with patch.object(
             Git,
             "_get_branch_reference",
@@ -266,7 +266,7 @@ async def test_checkout_branch_remoteref_failure():
 @pytest.mark.asyncio
 async def test_get_branch_reference_success():
 
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         actual_response = 0
         branch = "test-branch"
@@ -289,7 +289,7 @@ async def test_get_branch_reference_success():
 
 @pytest.mark.asyncio
 async def test_get_branch_reference_failure():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         actual_response = 0
         branch = "test-branch"
         reference = "test-branch"
@@ -319,7 +319,7 @@ async def test_get_branch_reference_failure():
 
 @pytest.mark.asyncio
 async def test_get_current_branch_failure():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (
@@ -348,7 +348,7 @@ async def test_get_current_branch_failure():
 
 @pytest.mark.asyncio
 async def test_get_current_branch_detached_success():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         process_output = [
             "* (HEAD detached at origin/feature-foo)",
@@ -374,7 +374,7 @@ async def test_get_current_branch_detached_success():
 
 @pytest.mark.asyncio
 async def test_get_current_branch_detached_failure():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (
@@ -411,7 +411,7 @@ async def test_get_current_branch_detached_failure():
     ],
 )
 async def test_get_upstream_branch_success(branch, upstream):
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future((0, upstream, ""))
 
@@ -449,7 +449,7 @@ async def test_get_upstream_branch_success(branch, upstream):
     ],
 )
 async def test_get_upstream_branch_failure(outputs, message):
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(outputs)
 
@@ -480,7 +480,7 @@ async def test_get_upstream_branch_failure(outputs, message):
 
 @pytest.mark.asyncio
 async def test_get_tag_success():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future((0, "v0.3.0", ""))
 
@@ -500,7 +500,7 @@ async def test_get_tag_success():
 
 @pytest.mark.asyncio
 async def test_get_tag_failure():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.side_effect = [
             tornado.gen.maybe_future((128, "", "fatal: Not a valid object name blah")),
@@ -555,7 +555,7 @@ async def test_get_tag_failure():
 
 @pytest.mark.asyncio
 async def test_no_tags():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
             (128, "", "fatal: No names found, cannot describe anything.\n")
@@ -576,7 +576,7 @@ async def test_no_tags():
 
 @pytest.mark.asyncio
 async def test_branch_success():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         process_output_heads = [
             "feature-foo\tabcdefghijklmnopqrstuvwxyz01234567890123\torigin/feature-foo\t*",
@@ -686,7 +686,7 @@ async def test_branch_success():
 
 @pytest.mark.asyncio
 async def test_branch_failure():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         expected_cmd = [
             "git",
@@ -722,7 +722,7 @@ async def test_branch_failure():
 
 @pytest.mark.asyncio
 async def test_branch_success_detached_head():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         process_output_heads = [
             "master\tabcdefghijklmnopqrstuvwxyz01234567890123\torigin/master\t "

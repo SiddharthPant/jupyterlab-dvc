@@ -58,7 +58,7 @@ jupyter labextension list
     Explicitly enable the server extension by running:
 
     ```bash
-    jupyter serverextension enable --py jupyterlab_git
+    jupyter serverextension enable --py jupyterlab_dvc
     ```
 
   - If you are using JupyterHub or some other technologies requiring an initialization script which includes the jupyterlab-git extension, be sure to install both the frontend and the server extension **before** launching JupyterLab.
@@ -96,12 +96,12 @@ Requires node 4+ and npm 4+
 pip install -U jupyterlab
 
 # Clone the repo to your local environment
-git clone https://github.com/jupyterlab/jupyterlab-git.git
-cd jupyterlab-git
+git clone https://github.com/SiddharthPant/jupyterlab-dvc.git
+cd jupyterlab-dvc
 
 # Install the server extension in development mode and enable it
 pip install -e .[test]
-jupyter serverextension enable --py jupyterlab_git
+jupyter serverextension enable --py jupyterlab_dvc
 
 # Build the labextension and dev-mode link it to jlab
 jlpm build
@@ -132,7 +132,7 @@ Now every change will be built locally and bundled into JupyterLab. Be sure to r
 To execute the tests
 
 ```bash
-pytest jupyterlab_git
+pytest jupyterlab_dvc
 jlpm run test
 ```
 

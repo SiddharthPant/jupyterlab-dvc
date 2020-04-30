@@ -1,5 +1,5 @@
 {
-  "name": "@jupyterlab/git",
+  "name": "@jupyterlab/dvc",
   "version": "0.20.0",
   "description": "A JupyterLab extension for version control using git",
   "main": "lib/index.js",
@@ -14,10 +14,10 @@
   ],
   "scripts": {
     "build": "jlpm install && tsc",
-    "build:labextension": "jlpm build && jlpm clean:labextension && mkdirp jupyterlab_git/labextension && cd jupyterlab_git/labextension && npm pack ../..",
+    "build:labextension": "jlpm build && jlpm clean:labextension && mkdirp jupyterlab_dvc/labextension && cd jupyterlab_dvc/labextension && npm pack ../..",
     "clean": "rimraf lib tsconfig.tsbuildinfo",
     "clean:more": "jlpm clean && rimraf build dist MANIFEST",
-    "clean:labextension": "rimraf jupyterlab_git/labextension",
+    "clean:labextension": "rimraf jupyterlab_dvc/labextension",
     "clean:slate": "jlpm clean:more && jlpm clean:labextension && rimraf node_modules",
     "contributors:generate": "jlpm run all-contributors generate",
     "lint": "tslint --project .",
@@ -41,7 +41,7 @@
           "conda"
         ],
         "base": {
-          "name": "jupyterlab-git"
+          "name": "jupyterlab-dvc"
         }
       }
     },
@@ -124,12 +124,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jupyterlab/jupyterlab-git.git"
+    "url": "https://github.com/SiddharthPant/jupyterlab-dvc.git"
   },
   "bugs": {
-    "url": "https://github.com/jupyterlab/jupyterlab-git/issues"
+    "url": "https://github.com/SiddharthPant/jupyterlab-dvc/issues"
   },
-  "homepage": "https://github.com/jupyterlab/jupyterlab-git",
+  "homepage": "https://github.com/SiddharthPant/jupyterlab-dvc",
   "resolutions": {
     "@types/react": "~16.8.4",
     "**/extract-zip/mkdirp": "^0.5.3"

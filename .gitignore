@@ -26,7 +26,7 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-jupyterlab_git/labextension/*.tgz
+jupyterlab_dvc/labextension/*.tgz
 lib/
 lib64/
 MANIFEST

@@ -37,7 +37,7 @@ const RESOURCES = [
  * The default running sessions extension.
  */
 const plugin: JupyterFrontEndPlugin<IGitExtension> = {
-  id: '@jupyterlab/git:plugin',
+  id: '@jupyterlab/dvc:plugin',
   requires: [
     IMainMenu,
     ILayoutRestorer,

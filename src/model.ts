@@ -1026,7 +1026,7 @@ export class GitExtension implements IGitExtension {
         throw new ServerConnection.ResponseError(
           response,
           'Git server extension is unavailable. Please ensure you have installed the ' +
-            'JupyterLab Git server extension by running: pip install --upgrade jupyterlab-git. ' +
+            'JupyterLab Git server extension by running: pip install --upgrade jupyterlab-dvc. ' +
             'To confirm that the server extension is installed, run: jupyter serverextension list.'
         );
       }

@@ -4,14 +4,14 @@ from unittest.mock import Mock, call, patch
 import pytest
 import tornado
 
-from jupyterlab_git.git import Git
-from jupyterlab_git.handlers import GitConfigHandler
+from jupyterlab_dvc.git import Git
+from jupyterlab_dvc.handlers import GitConfigHandler
 
 from .testutils import FakeContentManager, ServerTest
 
 
 class TestConfig(ServerTest):
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_git_get_config_success(self, mock_execute):
         # Given
         mock_execute.return_value = tornado.gen.maybe_future(
@@ -37,7 +37,7 @@ class TestConfig(ServerTest):
             },
         }
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_git_get_config_multiline(self, mock_execute):
         # Given
         output = (
@@ -73,9 +73,9 @@ class TestConfig(ServerTest):
             },
         }
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     @patch(
-        "jupyterlab_git.git.ALLOWED_OPTIONS",
+        "jupyterlab_dvc.git.ALLOWED_OPTIONS",
         ["alias.summary", "alias.topic-base-branch-name"],
     )
     def test_git_get_config_accepted_multiline(self, mock_execute):
@@ -117,7 +117,7 @@ class TestConfig(ServerTest):
             },
         }
 
-    @patch("jupyterlab_git.git.execute")
+    @patch("jupyterlab_dvc.git.execute")
     def test_git_set_config_success(self, mock_execute):
         # Given
         mock_execute.return_value = tornado.gen.maybe_future((0, "", ""))

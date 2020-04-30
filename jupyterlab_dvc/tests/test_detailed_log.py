@@ -6,14 +6,14 @@ import pytest
 import tornado
 
 # local lib
-from jupyterlab_git.git import Git
+from jupyterlab_dvc.git import Git
 
 from .testutils import FakeContentManager
 
 
 @pytest.mark.asyncio
 async def test_detailed_log():
-    with patch("jupyterlab_git.git.execute") as mock_execute:
+    with patch("jupyterlab_dvc.git.execute") as mock_execute:
         # Given
         process_output = [
             "f29660a (HEAD, origin/feature) Commit message",
