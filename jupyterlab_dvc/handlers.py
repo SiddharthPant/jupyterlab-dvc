@@ -20,7 +20,6 @@ class GitHandler(APIHandler):
 
     @property
     def git(self):
-        print("Executed~~~~~~~~~~~~")
         return self.settings["dvc"]
 
 
@@ -273,7 +272,7 @@ class GitRemoteAddHandler(GitHandler):
         name = data.get("name", DEFAULT_REMOTE_NAME)
         url = data["url"]
         output = self.git.remote_add(top_repo_path, url, name)
-        if(output["code"] == 0):
+        if output["code"] == 0:
             self.set_status(201)
         else:
             self.set_status(500)
@@ -419,7 +418,11 @@ class GitPullHandler(GitHandler):
         POST request handler, pulls files from a remote branch to your current branch.
         """
         data = self.get_json_body()
-        response = await self.git.pull(data["current_path"], data.get("auth", None), data.get("cancel_on_conflict", False))
+        response = await self.git.pull(
+            data["current_path"],
+            data.get("auth", None),
+            data.get("cancel_on_conflict", False),
+        )
 
         self.finish(json.dumps(response))
 

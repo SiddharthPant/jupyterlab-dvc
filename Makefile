@@ -10,7 +10,7 @@ help:
 
 # target: run_lab - Runs jupyterlab in watch mode at localhost:8888
 run_lab:
-	jupyter lab --watch --notebook-dir=~/
+	jupyter lab --watch --notebook-dir=~/work
 
 # target: run_frontend - Runs npm server in watch mode at localhost:3000
 run_frontend:
