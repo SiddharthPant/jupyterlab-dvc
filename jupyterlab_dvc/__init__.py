@@ -1,10 +1,10 @@
 """Initialize the backend server extension
 """
+from jupyterlab_dvc.git import Git
+from jupyterlab_dvc.handlers import setup_handlers
+
 # need this in order to show version in `jupyter serverextension list`
 from ._version import __version__
-
-from jupyterlab_dvc.handlers import setup_handlers
-from jupyterlab_dvc.git import Git
 
 
 def _jupyter_server_extension_paths():

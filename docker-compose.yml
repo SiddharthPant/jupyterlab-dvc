@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.7"
 services:
 
   jupyter:
@@ -7,7 +7,16 @@ services:
         args:
             - SERVER_PASSWORD=${SERVER_PASSWORD}
             - LOGIN_TOKEN=${LOGIN_TOKEN}
+    command: make -j
     ports:
       - "8888:8888"
     env_file:
         - ./.env
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+      - egg_info:/usr/src/app/jupyterlab_dvc.egg-info
+  
+volumes:
+  node_modules:
+  egg_info:

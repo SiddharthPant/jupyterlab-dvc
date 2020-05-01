@@ -4,12 +4,14 @@ Module with all the individual handlers, which execute git commands and return t
 import json
 import os
 from pathlib import Path
-from tornado import web
 
 from notebook.base.handlers import APIHandler
-from notebook.utils import url_path_join as ujoin, url2path
+from notebook.utils import url2path
+from notebook.utils import url_path_join as ujoin
+from tornado import web
 
 from .git import DEFAULT_REMOTE_NAME
+
 
 class GitHandler(APIHandler):
     """
@@ -18,7 +20,8 @@ class GitHandler(APIHandler):
 
     @property
     def git(self):
-        return self.settings["git"]
+        print("Executed~~~~~~~~~~~~")
+        return self.settings["dvc"]
 
 
 class GitCloneHandler(GitHandler):
